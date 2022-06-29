@@ -8,6 +8,7 @@ terraform {
     resource_group_name  = "terraform_RG"
     storage_account_name = "naggysstorageacc"
     container_name       = "tfstatecontainer"
+    key = "terraform2.tfstate"
 
 
   }
