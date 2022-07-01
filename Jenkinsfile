@@ -1,32 +1,32 @@
 pipeline {
+    
+    environment {
+        email = credentials('azureusername')
+        password = credentials('azurepassword')
+        
+    
+    }
+    
     agent any
+    tools {
+  terraform 'myTerraform'
+    }
+
+    
     
     stages {
-        stage('build'){
-            steps {
-                echo 'running build'
+        stage('GIT checkout') {
+            steps{
+                 
+                 git branch: 'main', url: 'https://github.com/nagarjunachamakuri/jenkins-devops'
             }
+           
         }
-        stage('test'){
+        stage('INIT'){
             steps {
-                echo 'running test'
+                sh 'terraform init'
             }
-        }
-        stage('integration test'){
-            steps {
-                echo 'running integration test'
-            }
+            
         }
     }
-    post {
-    always {
-        echo 'I run always'
-    }
-    success {
-        echo 'I run on success'
-    }
-    failure {
-        echo 'I run on failure'
-    }
-}
 }
