@@ -25,6 +25,8 @@ pipeline {
         stage('INIT'){
             steps {
                 sh 'terraform init'
+                sh 'az login'
+                
             }
             
         }
